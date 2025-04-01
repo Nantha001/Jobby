@@ -34,14 +34,13 @@ p {
 }
 .home-card {
   padding: 40px;
- 
+
   display: flex;
   flex-direction: column;
- 
- justify-content: center;
- align-items: flex-start;
- height: 80vh;
 
+  justify-content: center;
+  align-items: flex-start;
+  height: 80vh;
 }
 @media (min-width: 768px) {
   .home-card {

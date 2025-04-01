@@ -14,8 +14,8 @@
   padding: 10px;
   margin: 10px;
 }
-@media (max-width:768px){
-  .detail-card{
+@media (max-width: 768px) {
+  .detail-card {
     width: 92%;
     padding: 20px;
   }
