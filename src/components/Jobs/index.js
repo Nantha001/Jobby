@@ -253,6 +253,12 @@ class Jobs extends Component {
     </div>
   )
 
+  renderLoadingViewProfile = () => (
+    <div className="loader-container-profile" data-testid="loader">
+      <Loader type="ThreeDots" color="blue" height="50" width="50" />
+    </div>
+  )
+
   renderStatusUpdate = () => {
     const {apiStatus} = this.state
     switch (apiStatus) {
@@ -286,7 +292,7 @@ class Jobs extends Component {
     const {profileStatus} = this.state
     switch (profileStatus) {
       case profileStatusConstant.loading:
-        return this.renderLoadingView()
+        return this.renderLoadingViewProfile()
       case profileStatusConstant.success:
         return this.renderProfileSection()
       case profileStatusConstant.failure:
@@ -313,6 +319,7 @@ class Jobs extends Component {
                 type="button"
                 data-testid="searchButton"
                 onClick={this.onclickSearchIcon}
+                className="btn-search"
               >
                 <BsSearch className="search-icon" />
               </button>

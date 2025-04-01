@@ -14,6 +14,12 @@
   padding: 10px;
   margin: 10px;
 }
+@media (max-width:768px){
+  .detail-card{
+    width: 92%;
+    padding: 20px;
+  }
+}
 .detail-card-title-section {
   display: flex;
   align-items: center;
@@ -75,6 +81,7 @@ a {
 .life-company-container {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .similar-job-container {
   display: flex;
