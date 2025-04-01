@@ -20,6 +20,14 @@
   padding: 30px;
   margin-top: 0.3cm;
 }
+.location-list-filter {
+  display: flex;
+  flex-direction: column;
+}
+.location-list-filter li {
+  display: flex;
+  align-items: center;
+}
 
 .profile-container h1 {
   color: darkblue;

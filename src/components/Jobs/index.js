@@ -45,6 +45,14 @@ const salaryRangesList = [
   },
 ]
 
+const locationTypeList = [
+  {id: 'Hyderabad', label: 'Hyderabad'},
+  {id: 'Bangalore', label: 'Bangalore'},
+  {id: 'Chennai', label: 'Chennai'},
+  {id: 'Delhi', label: 'Delhi'},
+  {id: 'Mumbai', label: 'Mumbai'},
+]
+
 const apiStatusConstant = {
   success: 'success',
   failure: 'failure',
@@ -66,6 +74,7 @@ class Jobs extends Component {
     jobDataList: [],
     apiStatus: apiStatusConstant.loading,
     profileStatus: profileStatusConstant.loading,
+    locationList: [],
   }
 
   componentDidMount() {
@@ -162,6 +171,18 @@ class Jobs extends Component {
     this.setState({lpaRange: event.target.value}, this.jobFetchData)
   }
 
+  onChangeLocation = event => {
+    const {checked, id, value} = event.target
+    this.setState(
+      pre => ({
+        locationList: checked
+          ? [...pre.locationList, value]
+          : pre.locationList.filter(each => each.id !== id),
+      }),
+      this.jobFetchData,
+    )
+  }
+
   renderFilterOptionSection = () => (
     <>
       <h1 className="filter-heading">Type of Employment</h1>
@@ -196,6 +217,22 @@ class Jobs extends Component {
           </li>
         ))}
       </ul>
+      <hr />
+      <h1 className="filter-heading">Location List</h1>
+
+      <ul className="location-list-filter">
+        {locationTypeList.map(each => (
+          <li key={each.id}>
+            <input
+              id={each.id}
+              onChange={this.onChangeLocation}
+              type="checkbox"
+              value={each.id}
+            />
+            <label htmlFor={each.id}>{each.label}</label>
+          </li>
+        ))}
+      </ul>
     </>
   )
 
@@ -208,10 +245,14 @@ class Jobs extends Component {
   }
 
   renderJobData = () => {
-    const {jobDataList} = this.state
-    return jobDataList.length > 0 ? (
+    const {jobDataList, locationList} = this.state
+    const filterJobDataList =
+      locationList.length === 0
+        ? jobDataList
+        : jobDataList.filter(each => locationList.includes(each.location))
+    return filterJobDataList.length > 0 ? (
       <ul>
-        {jobDataList.map(each => (
+        {filterJobDataList.map(each => (
           <JobItem key={each.id} jobDataItem={each} />
         ))}
       </ul>
